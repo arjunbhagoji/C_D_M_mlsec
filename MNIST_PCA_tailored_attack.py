@@ -405,7 +405,8 @@ zero_array=np.zeros((50000,784))
 for i in range(50000):
     np.put(zero_array[i,:],top_features,1)
 
-adv_x=X_train+1.0*zero_array
+#adv_x=X_train+1.0*zero_array
+adv_x=np.float32(X_train+1.0*zero_array)
 
 count_tot=0.0
 count_wrong=0.0

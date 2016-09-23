@@ -1,0 +1,80 @@
+Loading data...
+Doing PCA over the training data
+Transforming the training, validation and test data
+Building model and compiling functions...
+Final results:
+  test loss:			0.116285
+  test accuracy:		96.60 %
+Results are for dim. 784
+0.2582 0.24542 0.26664
+0.155100726625 0.147473282736 0.16142110352
+Loading data...
+Doing PCA over the training data
+Transforming the training, validation and test data
+Building model and compiling functions...
+Final results:
+  test loss:			0.119117
+  test accuracy:		96.43 %
+Results are for dim. 331
+0.1783 0.16488 0.18662
+0.112749936451 0.104600262985 0.118969883482
+Loading data...
+Doing PCA over the training data
+Transforming the training, validation and test data
+Building model and compiling functions...
+Final results:
+  test loss:			0.123841
+  test accuracy:		96.33 %
+Results are for dim. 100
+0.26398 0.2473 0.27228
+0.167385988252 0.157670360234 0.173997876222
+Loading data...
+Doing PCA over the training data
+Transforming the training, validation and test data
+Building model and compiling functions...
+Final results:
+  test loss:			0.133671
+  test accuracy:		96.14 %
+Results are for dim. 50
+0.2825 0.26226 0.29142
+0.160758607306 0.1494300781 0.168159984793
+Loading data...
+Doing PCA over the training data
+Transforming the training, validation and test data
+Building model and compiling functions...
+Final results:
+  test loss:			0.145080
+  test accuracy:		95.88 %
+Results are for dim. 40
+0.32664 0.30332 0.3351
+0.198578534178 0.18507802462 0.205865666744
+Loading data...
+Doing PCA over the training data
+Transforming the training, validation and test data
+Building model and compiling functions...
+Final results:
+  test loss:			0.161586
+  test accuracy:		95.38 %
+Results are for dim. 30
+0.20602 0.1824 0.21944
+0.128967216672 0.115885957884 0.139017928284
+Loading data...
+Doing PCA over the training data
+Transforming the training, validation and test data
+Building model and compiling functions...
+Final results:
+  test loss:			0.211448
+  test accuracy:		94.27 %
+Results are for dim. 20
+0.2013 0.17 0.21636
+0.12529376677 0.108236155153 0.136592599638
+Loading data...
+Doing PCA over the training data
+Transforming the training, validation and test data
+Building model and compiling functions...
+Final results:
+  test loss:			0.416469
+  test accuracy:		88.66 %
+Results are for dim. 10
+0.33098 0.26288 0.35124
+0.180081920702 0.143823303055 0.195087602826

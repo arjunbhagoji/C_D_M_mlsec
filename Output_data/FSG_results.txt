@@ -1,0 +1,267 @@
+LAMBDA=1
+
+Trial 1:
+PCA fraction: 0.99
+reduced_dim: 331
+Epochs: 500
+Validation accuracy: 86.21%
+Test accuracy: 85.42%
+Adv. set size: 50000
+Deviation magnitude (\epsilon): 0.25
+Misclassification: 34.614%
+Confidence: 0.338
+
+Trial 2:
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs: 500
+Validation accuracy: 86.33%
+Test accuracy: 85.47%
+Adv. set size: 50000
+Deviation magnitude (\epsilon): 0.25
+Misclassification: 86.052%
+Confidence: 0.291
+
+LAMBDA=1e-2
+
+Trial 3:
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs: 500
+Validation accuracy: 92.08%
+Test accuracy: 91.87%
+Adv. set size: 50000
+Deviation magnitude (\epsilon): 0.25
+Misclassification: 92.694%
+Confidence: 0.874
+
+Trial 4:
+PCA fraction: 0.9
+reduced_dim: 87
+Epochs: 500
+Validation accuracy: 91.69%
+Test accuracy: 91.42%
+Adv. set size: 50000
+Deviation magnitude (\epsilon): 0.25
+Misclassification: 75.786%
+Confidence: 0.709
+
+Trial 5:
+PCA fraction: ?
+reduced_dim: 20
+Epochs: 500
+Validation accuracy: 88.37%
+Test accuracy: 87.87%
+Adv. set size: 50000
+Deviation magnitude (\epsilon): 0.25
+Misclassification: 29.89%
+Confidence: 0.695
+
+LAMBA=1e-4
+
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs: 500
+Validation accuracy: 92.99%
+Test accuracy: 92.51%
+Adv. set size: 50000
+Deviation magnitude (\epsilon): 0.25
+Misclassification: 93.698%
+Confidence: 0.969
+
+PCA fraction: ?
+reduced_dim: 20
+Epochs: 500
+Validation accuracy: 88.65%
+Test accuracy: 88.09%
+Adv. set size: 50000
+Deviation magnitude (\epsilon): 0.25
+Misclassification: 33.928%
+Confidence: 0.729
+#########################################################
+PCA fraction: ?
+reduced_dim: 10
+Epochs :500
+Validation accuracy: 82.16
+Test accuracy: 80.9
+Adv. set size: 50000
+Deviation magnitude: 0.1
+Misclassification: 8.322
+Confidence: 0.751738007917
+#########################################################
+PCA fraction: ?
+reduced_dim: 10
+Epochs :500
+Test accuracy: 80.9
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 22.494
+Confidence: 0.712513642819
+#########################################################
+Model: FC10_2_100
+PCA fraction: 0.99
+reduced_dim: 331
+Epochs :500
+Test accuracy: 97.16
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 99.258
+Confidence: 0.918005817429
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: 0.99
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.16
+Adv. set size: 50000
+Deviation magnitude: 0.2
+Misclassification: 98.854
+Confidence: 0.912883593942
+#########################################################
+Model: FC10_2_100_PCA_20
+PCA fraction: ?
+reduced_dim: 20
+Epochs: 500
+Test accuracy: 96.6
+Adv. set size: 50000
+Deviation magnitude: 0.2
+Misclassification: 20.07
+Confidence: 0.861618870202
+#########################################################
+Model: FC10_2_100
+PCA fraction: ?
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.67
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 99.648
+Confidence: 0.927275000827
+#########################################################
+Model: FC10_2_100_PCA_20
+PCA fraction: ?
+reduced_dim: 20
+Epochs: 500
+Test accuracy: 96.6
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 29.346
+Confidence: 0.835339102846
+#########################################################
+Model: FC10_2_100
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 99.644
+Confidence: 0.929562128754
+Model: FC10_2_100
+Model: FC10_2_100
+Model: FC10_2_100
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 70.556
+Confidence: 0.849821508275
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.1
+Misclassification: 97.068
+Confidence: 0.915948837789
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.15
+Misclassification: 99.366
+Confidence: 0.929870104763
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.2
+Misclassification: 99.594
+Confidence: 0.93096723627
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 99.664
+Confidence: 0.92985019468
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.3
+Misclassification: 99.662
+Confidence: 0.928383138395
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.35
+Misclassification: 99.676
+Confidence: 0.927330974968
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.4
+Misclassification: 99.718
+Confidence: 0.926951654567
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.45
+Misclassification: 99.71
+Confidence: 0.927187046407
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :500
+Test accuracy: 97.83
+Adv. set size: 50000
+Deviation magnitude: 0.5
+Misclassification: 99.71
+Confidence: 0.925564763006
+Model: FC10_2_100
+Model: FC10_2_100
+Model: FC10_2_100
+Model: FC10_2_100
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :100
+Test accuracy: 97.6662660256
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :100
+Test accuracy: 97.6662660256
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :100
+Test accuracy: 97.6662660256
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :100
+Test accuracy: 97.6662660256
+PCA fraction: N.A.
+reduced_dim: 784
+Epochs :100
+Test accuracy: 97.6662660256
+Model: FC10_2_100

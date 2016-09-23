@@ -1,0 +1,85 @@
+Model: cnn_9_layers_papernot_with_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 82.43%
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 81.8099999428
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 81.8099999428
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 81.8099999428
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 81.81
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 81.81
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 81.81
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg_flat
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 71.590000093
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg_no_aug
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 54.2899999022
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg_no_aug
+reduced_dim: 100
+Epochs: 50
+Test accuracy: 46.0300001502
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg_no_aug
+reduced_dim: 3072
+Epochs: 50
+Test accuracy: 51.8799994886
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg_no_aug_flat
+reduced_dim: 3072
+Epochs: 50
+Test accuracy: 51.6099998355
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg_no_aug_flat
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 36.6599999368
+#########################################################
+Model:CIFAR_model_FC10_2_100_drop reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 39.6099999547
+#########################################################
+Model:CIFAR_model_FC10_2_100_drop reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 37.2500000894
+#########################################################
+Model:CIFAR_model_FC10_3_100_drop reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 19.1999999434
+#########################################################
+Model:CIFAR_model_FC10_3_100_drop () reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 31.8400000036
+#########################################################
+Model:CIFAR_model_FC10_3_100_drop (relu units) reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 50.8499997854
+#########################################################

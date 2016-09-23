@@ -1,0 +1,126 @@
+LAMBDA=1e-4
+
+Trial 1:
+PCA fraction: 1.00
+reduced_dim:784
+Epochs: 500
+Validation accuracy: 92.98%
+Test accuracy: 92.60%
+L-BFGS iterations: Unlimited
+Misclassification: 97.83%
+Deviation: 0.267
+L-BFGS iterations: 800
+Misclassification: 100.0%
+Deviation: 0.26
+
+Trial 2:
+PCA fraction: N.A.
+Epochs: 500
+Validation accuracy: 93.00%
+Test accuracy: 92.64%
+L-BFGS iterations: Unlimited
+Misclassification: 100.0%
+Deviation: 0.151
+L-BFGS iterations: 600
+Misclassification: 41.86%
+Deviation: 0.036
+
+Trial 3:
+PCA fraction: 0.99
+reduced_dim:331
+Epochs: 500
+Validation accuracy: 92.98%
+Test accuracy: 92.54%
+L-BFGS iterations: 800
+Misclassification: 100.0%
+Deviation: 0.378
+L-BFGS iterations: 700
+Misclassification: 100.0%
+Deviation: 0.369
+L-BFGS iterations: 600
+Misclassification: 100.0%
+Deviation: 0.382
+L-BFGS iterations: Unlimited
+Misclassification: 98.91%
+Deviation: 0.452
+
+Trial 4:
+PCA fraction: 0.9
+Epochs: 500
+Validation accuracy: 92.19%
+Test accuracy: 91.98%
+L-BFGS iterations: 600
+Misclassification: 98.81%
+Deviation: 0.769
+L-BFGS iterations: Unlimited
+Misclassification: 95.604%
+Deviation: 0.893
+L-BFGS iterations: 700
+Misclassification: 98.889%
+Deviation: 0.803
+L-BFGS iterations: 800
+Misclassification: 100.0%
+Deviation: 0.798
+L-BFGS iterations: Unlimited
+Misclassification: 100.0%
+Deviation: 0.937
+
+LAMBDA=1
+
+Trial 5:
+PCA fraction: 1.0
+Epochs: 500
+Validation accuracy: 86.13%
+Test accuracy: 85.40%
+L-BFGS iterations: Unlimited
+Misclassification: 96.739%
+Deviation: 0.769
+L-BFGS iterations: Unlimited
+Misclassification: 97.802%
+Deviation: 0.308
+L-BFGS iterations: 600
+Misclassification: 57.778%
+Deviation: 0.202
+L-BFGS iterations: 700
+Misclassification: 64.773%
+Deviation: 0.206
+L-BFGS iterations: 800
+Misclassification: 62.195%
+Deviation: 0.235
+
+Trial 6:
+PCA fraction: 0.99
+Epochs: 500
+reduced_dim=331
+Validation accuracy: 85.96%
+Test accuracy: 85.12%
+L-BFGS iterations: Unlimited
+Misclassification: 97.674%
+Deviation: 0.475
+L-BFGS iterations: 600
+Misclassification: 64.444%
+Deviation: 0.340
+L-BFGS iterations: 700
+Misclassification: 73.958%
+Deviation: 0.343
+L-BFGS iterations: Unlimited
+Misclassification: 97.753%
+Deviation: 0.479
+
+Trial 7:
+PCA fraction: N.A.
+Epochs: 500
+Validation accuracy: 85.80%
+Test accuracy: 85.19%
+L-BFGS iterations: Unlimited
+Misclassification: 91.111%
+Deviation: 0.229
+L-BFGS iterations: Unlimited
+Misclassification: 87.097%
+Deviation: 0.222
+L-BFGS iterations: 600
+Misclassification: 0.0%
+Deviation: 0.0
+L-BFGS iterations: 700
+Misclassification: 2.15%
+Deviation: 0.017

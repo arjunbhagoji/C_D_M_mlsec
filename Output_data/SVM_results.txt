@@ -1,0 +1,10 @@
+##################################################
+Solver: LinearSVC, Kernel: linear, Method: ovr
+##################################################
+rd: val_success, test_success
+no_pca: 0.921,0.915
+##################################################
+Solver: LinearSVC, Kernel: linear, Method: ovr
+##################################################
+rd: val_success, test_success
+no_pca: 0.921,0.915

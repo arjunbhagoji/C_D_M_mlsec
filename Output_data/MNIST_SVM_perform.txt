@@ -1,0 +1,32 @@
+Model: Linear SVM
+reduced_dim: N.A.
+Test accuracy: 0.9153
+#########################################################
+Model: Linear SVM
+reduced_dim: N.A.
+Test accuracy: 0.9153
+#########################################################
+Model: Linear SVM
+reduced_dim: N.A.
+Test accuracy: 0.9153
+#########################################################
+Model: Linear SVM
+reduced_dim: N.A.
+Test accuracy: 0.9153
+#########################################################
+Model: Linear SVM
+reduced_dim: N.A.
+Test accuracy: 0.9153
+#########################################################
+Model: Linear SVM
+reduced_dim: N.A.
+Test accuracy: 0.9153
+#########################################################
+Model: Linear SVM
+reduced_dim: N.A.
+Test accuracy: 0.9153
+#########################################################
+Model: Linear SVM
+reduced_dim: N.A.
+Test accuracy: 0.9153
+#########################################################

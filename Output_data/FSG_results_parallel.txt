@@ -1,0 +1,760 @@
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 38.666
+Confidence: 0.836310599658
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 68.666
+Confidence: 0.833622686404
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 37.756
+Confidence: 0.836922547332
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 68.978
+Confidence: 0.834310389395
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.1
+Misclassification: 85.214
+Confidence: 0.867159846835
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.1
+Misclassification: 96.738
+Confidence: 0.906243460562
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.15
+Misclassification: 96.216
+Confidence: 0.903190305126
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 38.378
+Confidence: 0.835626384941
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 68.766
+Confidence: 0.835367944305
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.1
+Misclassification: 85.192
+Confidence: 0.866828321951
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.1
+Misclassification: 96.694
+Confidence: 0.90561046254
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.15
+Misclassification: 96.204
+Confidence: 0.903745567376
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.15
+Misclassification: 99.102
+Confidence: 0.922211703264
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.2
+Misclassification: 98.642
+Confidence: 0.915869768647
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 99.14
+Confidence: 0.919198781022
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.2
+Misclassification: 99.384
+Confidence: 0.92606239826
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.3
+Misclassification: 99.312
+Confidence: 0.919209477923
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 99.448
+Confidence: 0.925643978697
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.35
+Misclassification: 99.402
+Confidence: 0.918691097256
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.3
+Misclassification: 99.482
+Confidence: 0.925114046559
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.4
+Misclassification: 99.404
+Confidence: 0.916753796917
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.45
+Misclassification: 99.448
+Confidence: 0.914606852915
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.35
+Misclassification: 99.514
+Confidence: 0.923289128644
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.5
+Misclassification: 99.432
+Confidence: 0.913439812377
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.4
+Misclassification: 99.5
+Confidence: 0.924230650842
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.45
+Misclassification: 99.57
+Confidence: 0.923157534956
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.5
+Misclassification: 99.568
+Confidence: 0.920731799164
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 38.034
+Confidence: 0.836291406444
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 69.04
+Confidence: 0.834849688629
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.1
+Misclassification: 85.042
+Confidence: 0.867885195608
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.1
+Misclassification: 96.844
+Confidence: 0.906511868541
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.15
+Misclassification: 96.248
+Confidence: 0.902224618464
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.2
+Misclassification: 98.67
+Confidence: 0.914790354129
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.15
+Misclassification: 99.158
+Confidence: 0.921374979277
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 99.1
+Confidence: 0.918983931647
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.2
+Misclassification: 99.37
+Confidence: 0.925458716994
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.3
+Misclassification: 99.292
+Confidence: 0.919213825301
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 99.462
+Confidence: 0.926645364313
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.35
+Misclassification: 99.418
+Confidence: 0.918212026169
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.4
+Misclassification: 99.434
+Confidence: 0.917623230072
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.3
+Misclassification: 99.502
+Confidence: 0.926522328776
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.45
+Misclassification: 99.444
+Confidence: 0.914773166399
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.35
+Misclassification: 99.512
+Confidence: 0.92334847254
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.15
+Adv. set size: 50000
+Deviation magnitude: 0.5
+Misclassification: 99.484
+Confidence: 0.913412466312
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.4
+Misclassification: 99.494
+Confidence: 0.922972809491
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.45
+Misclassification: 99.526
+Confidence: 0.922027783772
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.2
+Adv. set size: 50000
+Deviation magnitude: 0.5
+Misclassification: 99.494
+Confidence: 0.921015089142
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 91.19
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 47.884
+Confidence: 0.846027260169
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 91.19
+Adv. set size: 50000
+Deviation magnitude: 0.1
+Misclassification: 81.086
+Confidence: 0.882886250959
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 90.63
+Adv. set size: 50000
+Deviation magnitude: 0.05
+Misclassification: 68.936
+Confidence: 0.860224447785
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 91.19
+Adv. set size: 50000
+Deviation magnitude: 0.15
+Misclassification: 89.422
+Confidence: 0.91192879587
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 90.63
+Adv. set size: 50000
+Deviation magnitude: 0.1
+Misclassification: 89.09
+Confidence: 0.916587257168
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 91.19
+Adv. set size: 50000
+Deviation magnitude: 0.2
+Misclassification: 91.33
+Confidence: 0.921354955492
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 90.63
+Adv. set size: 50000
+Deviation magnitude: 0.15
+Misclassification: 91.404
+Confidence: 0.929859371231
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 91.19
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 91.828
+Confidence: 0.924709007193
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 90.63
+Adv. set size: 50000
+Deviation magnitude: 0.2
+Misclassification: 91.748
+Confidence: 0.933523263428
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 91.19
+Adv. set size: 50000
+Deviation magnitude: 0.3
+Misclassification: 92.096
+Confidence: 0.925780580006
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 90.63
+Adv. set size: 50000
+Deviation magnitude: 0.25
+Misclassification: 91.976
+Confidence: 0.933461283458
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 91.19
+Adv. set size: 50000
+Deviation magnitude: 0.35
+Misclassification: 92.31
+Confidence: 0.925112412843
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 90.63
+Adv. set size: 50000
+Deviation magnitude: 0.3
+Misclassification: 92.338
+Confidence: 0.93278691505
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 91.19
+Adv. set size: 50000
+Deviation magnitude: 0.4
+Misclassification: 92.41
+Confidence: 0.92451782368
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 90.63
+Adv. set size: 50000
+Deviation magnitude: 0.35
+Misclassification: 92.56
+Confidence: 0.929779310578
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 91.19
+Adv. set size: 50000
+Deviation magnitude: 0.45
+Misclassification: 92.558
+Confidence: 0.922620490606
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 90.63
+Adv. set size: 50000
+Deviation magnitude: 0.4
+Misclassification: 92.714
+Confidence: 0.929757083876
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 91.19
+Adv. set size: 50000
+Deviation magnitude: 0.5
+Misclassification: 92.886
+Confidence: 0.921949656865
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 90.63
+Adv. set size: 50000
+Deviation magnitude: 0.45
+Misclassification: 92.724
+Confidence: 0.929252968364
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 90.63
+Adv. set size: 50000
+Deviation magnitude: 0.5
+Misclassification: 92.882
+Confidence: 0.927874324656
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.12
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.17
+#########################################################
+Model: FC10_2_100_PCA_100
+PCA fraction: ?
+reduced_dim: 100
+Epochs: 500
+Test accuracy: 97.43
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.12
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.17
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.12
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.17
+#########################################################
+Model: FC10_2_100_PCA_100
+PCA fraction: ?
+reduced_dim: 100
+Epochs: 500
+Test accuracy: 97.43
+#########################################################
+Model: FC10_2_100_PCA_50
+PCA fraction: ?
+reduced_dim: 50
+Epochs: 500
+Test accuracy: 97.07
+#########################################################
+Model: FC10_2_100_PCA_40
+PCA fraction: ?
+reduced_dim: 40
+Epochs: 500
+Test accuracy: 97.19
+#########################################################
+Model: FC10_2_100_PCA_30
+PCA fraction: ?
+reduced_dim: 30
+Epochs: 500
+Test accuracy: 97.22
+#########################################################
+Model: FC10_2_100_PCA_20
+PCA fraction: ?
+reduced_dim: 20
+Epochs: 500
+Test accuracy: 96.96
+#########################################################
+Model: FC10_2_100_PCA_10
+PCA fraction: ?
+reduced_dim: 10
+Epochs: 500
+Test accuracy: 93.23
+#########################################################
+Model: FC10_2_100_PCA_331
+PCA fraction: ?
+reduced_dim: 331
+Epochs: 500
+Test accuracy: 97.21
+#########################################################
+Model: FC10_2_100_PCA_784
+PCA fraction: ?
+reduced_dim: 784
+Epochs: 500
+Test accuracy: 97.22
+#########################################################

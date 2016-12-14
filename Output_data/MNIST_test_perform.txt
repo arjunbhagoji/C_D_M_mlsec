@@ -477,4 +477,732 @@ Model: FC10_2_100_
 reduced_dim: N.A.
 Epochs: 500
 Test accuracy: 97.71
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_100
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.97
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_100
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.97
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_100
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.97
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.9800006151
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_w_PCA_clean100
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.650000155
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_w_PCA_clean100
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.650000155
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_w_PCA_clean100
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.650000155
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_w_PCA_clean100
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.650000155
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_w_PCA_clean100
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.650000155
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.4300000668
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.4300000668
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean10
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 83.69
+#########################################################
+Model: FC10_2_100_w_PCA_clean40
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.9
+#########################################################
+Model: FC10_2_100_w_PCA_clean20
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 94.22
+#########################################################
+Model: FC10_2_100_w_PCA_clean100
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.65
+#########################################################
+Model: FC10_2_100_w_PCA_clean50
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.15
+#########################################################
+Model: FC10_2_100_w_PCA_clean331
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.73
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_w_PCA_clean784
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.4300000668
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.4300000668
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_w_PCA_clean30
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 96.43
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.7100005746
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: FC10_2_100_
+reduced_dim: N.A.
+Epochs: 500
+Test accuracy: 97.71
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_10
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 82.95
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_100
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.97
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_10
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 82.95
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_50
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.75
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_100
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.97
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_30
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.09
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_20
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 96.33
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_784
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_331
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.97
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_40
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.67
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_30
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.09
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_40
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.67
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_784
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.98
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_100
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.97
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_331
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.97
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_20
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 96.33
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_50
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 98.75
+#########################################################
+Model: model_cnn_papernot_w_PCA_clean_10
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 82.95
 #########################################################

@@ -120,6 +120,33 @@ def build_custom_mlp(input_var, depth, WIDTH, drop_input,
     network = lasagne.layers.DenseLayer(network, 10, nonlinearity=softmax)
     return network
 
+def build_hidden_fc_no_rd(input_var=None, WIDTH=100):
+    # By default, this creates the same network as `build_mlp`, but it can be
+    # customized with respect to the number and size of hidden layers. This
+    # mostly showcases how creating a network in Python code can be a lot more
+    # flexible than a configuration file. Note that to make the code easier,
+    # all the layers are just called `network` -- there is no need to give them
+    # different names if all we return is the last one we created anyway; we
+    # just used different names above for clarity.
+
+    # Input layer and dropout (with shortcut `dropout` for `DropoutLayer`):
+    in_layer = lasagne.layers.InputLayer(shape=(None, 1, 28, 28),
+                                        input_var=input_var)
+    #if DROP_INput:
+    #    network = lasagne.layers.dropout(network, p=DROP_INput)
+    # Hidden layers and dropout:
+    nonlin = lasagne.nonlinearities.sigmoid
+    #for _ in range(DEPTH):
+    layer_1 = lasagne.layers.DenseLayer(in_layer, WIDTH, nonlinearity=nonlin)
+    layer_2 = lasagne.layers.DenseLayer(layer_1, WIDTH, nonlinearity=nonlin)
+    #    if DROP_HIDden:
+    #        network = lasagne.layers.dropout(network, p=DROP_HIDden)
+    # Output layer:
+    softmax = lasagne.nonlinearities.softmax
+    network = lasagne.layers.DenseLayer(layer_2, 10, nonlinearity=softmax)
+    return network
+    #, layer_1, layer_2
+
 
 def build_hidden_fc(input_var, WIDTH,rd):
     # By default, this creates the same network as `build_mlp`, but it can be
@@ -218,9 +245,12 @@ def pca_main(rd):
     X_train_dr=pca.transform(PCA_in_train).reshape((50000,1,rd))
     X_test_dr=pca.transform(PCA_in_test).reshape((10000,1,rd))
     X_val_dr=pca.transform(PCA_in_val).reshape((10000,1,rd))
-    # for i in range(1):
-    #     X_adv_dr_train[:,:,i]=pca.transform(PCA_in_adv_train[:,:,i])
-    #     X_adv_dr_test[:,:,i]=pca.transform(PCA_in_adv_test[:,:,i])
+    # no_of_mags=10
+    # X_adv_dr_train=np.zeros((50000,rd,10))
+    # X_adv_dr_test=np.zeros((10000,rd,10))
+    # for i in range(no_of_mags):
+    #     X_adv_dr_train[:,:,i]=pca.transform(adv_examples_train[:,:,i])
+    #     X_adv_dr_test[:,:,i]=pca.transform(adv_examples_test[:,:,i])
 
 
     ### Neural network learning with DR examples
@@ -295,157 +325,521 @@ def pca_main(rd):
     print("  test loss:\t\t\t{:.6f}".format(test_err / test_batches))
     print("  test accuracy:\t\t{:.2f} %".format(
         test_acc / test_batches * 100))
-    if adv_example_flag==0:
-        ### To create adversarial exmaples according to fast sign gradient method
-        #Theano object to find the gradient with respect to the input
-        req_gradient=T.grad(loss,input_var)
-        # Theano function to find the nuemrical value of
-        #gradient for a particular input-output combination
-        grad_function=theano.function([input_var,target_var],req_gradient)
+    rel_path_o="Output_data/"
+    abs_path_o=os.path.join(script_dir,rel_path_o)
+    myfile=open(abs_path_o+'MNIST_test_perform_PCA.txt','a')
+    # myfile.write('Model: FC10_'+str(DEPTH)+'_'+str(WIDTH)+
+    #                 '_'+'\n')
+    # myfile.write('Model: model_cnn_9_layers_papernot'+'\n')
+    myfile.write(str(rd)+", "
+                +str(test_acc / test_batches * 100)+"\n")
+    myfile.write("#####################################################"+
+                    "####"+"\n")
+    myfile.close()
 
-        # Variables and loop for finding adversarial examples from traning set
+    ### To create adversarial exmaples according to fast sign gradient method
+    #Theano object to find the gradient with respect to the input
+    req_gradient=T.grad(loss,input_var)
+    # Theano function to find the nuemrical value of
+    #gradient for a particular input-output combination
+    grad_function=theano.function([input_var,target_var],req_gradient)
+
+    # Variables and loop for finding adversarial examples from traning set
+    plotfile=open(abs_path_o+'FSG_MNIST_NN_'+str(DEPTH)+'_'
+                    +str(WIDTH)+'_retrain_PCA_'+str(rd)+'.txt','a')
+    # plotfile=open(abs_path_o+'FSG_MNIST_data_cnn_9_layers_papernot_PCA_'
+    #                 +str(rd)+'.txt','a')
+    plotfile.write('rd,Dev.,Wrong,C.,n_C.,Adv.,C.,n_C.,Pure,C.,n_C.,Train \n')
+    plotfile.close()
+    #Loop for training data
+    start_time=time.time()
+    mag_count=0
+    for DEV_MAG in np.linspace(0.01,0.1,10):
+        X_adv_dr=X_adv_dr_train[:,:,mag_count]
+        count_tot=0.0
+        count_wrong=0.0
+        conf_wrong=0.0
+        count_abs_wrong=0.0
+        conf_abs=0.0
+        count_adv=0.0
+        conf_adv=0.0
+        conf_correct=0.0
+        conf_n_adv=conf_abs_c=count_ini=0.0
+        b_count=0
+        for batch in iterate_minibatches(X_train_dr,y_train,5000,shuffle=False):
+            input_curr, y_curr=batch
+            current_predict=predict_fn(input_curr)
+            current_conf=confidence(input_curr)
+            cc,ca_c=val_fn(input_curr,y_curr)
+            count_ini=count_ini+ca_c
+            # Gradient w.r.t to input and current class
+            delta_x=grad_function(input_curr,y_curr)
+            # Sign of gradient
+            delta_x_sign=np.sign(delta_x)
+            #delta_x_sign=delta_x_sign/np.linalg.norm((delta_x_sign))
+            #Perturbed image
+            adv_x=input_curr+DEV_MAG*delta_x_sign
+            # adv_x=X_adv_dr[b_count*5000:(b_count+1)*5000,:].reshape((5000,1,rd))
+            # Predicted class for perturbed image
+            cw,ca = val_fn(adv_x,y_curr)
+            count_wrong=count_wrong+ca
+            adv_predict=predict_fn(adv_x)
+            adv_conf=confidence(adv_x)
+            for i in range(5000):
+                if adv_predict[i]!=y_curr[i]:
+                    conf_wrong=conf_wrong+adv_conf[i,adv_predict[i]]
+                if adv_predict[i]!=current_predict[i]:
+                    count_adv=count_adv+1
+                    conf_adv=conf_adv+adv_conf[i,adv_predict[i]]
+                if adv_predict[i]==y_curr[i]:
+                    conf_correct=conf_correct+adv_conf[i,adv_predict[i]]
+                if adv_predict[i]==current_predict[i]:
+                    conf_n_adv=conf_n_adv+adv_conf[i,adv_predict[i]]
+                if current_predict[i]==y_curr[i] and adv_predict[i]!=y_curr[i]:
+                    count_abs_wrong=count_abs_wrong+1
+                    conf_abs=conf_abs+adv_conf[i,adv_predict[i]]
+                if current_predict[i]==y_curr[i] and adv_predict[i]==y_curr[i]:
+                    conf_abs_c=conf_abs_c+adv_conf[i,adv_predict[i]]
+            b_count=b_count+1
+            print b_count
         plotfile=open(abs_path_o+'FSG_MNIST_NN_'+str(DEPTH)+'_'
                         +str(WIDTH)+'_retrain_PCA_'+str(rd)+'.txt','a')
-        # plotfile=open(abs_path_o+'FSG_MNIST_data_cnn_9_layers_papernot_PCA_'
-        #                 +str(rd)+'.txt','a')
-        plotfile.write('rd,Dev.,Wrong,C.,n_C.,Adv.,C.,n_C.,Pure,C.,n_C.,Train \n')
+        adv_acc=100-count_wrong/b_count*100
+        adv_acc_2=100-count_adv/b_count*100
+        adv_count=adv_acc*50000/100
+        c_count=50000-adv_count
+        ini_count=count_ini/b_count*50000
+        # plotfile=open(abs_path_o+'FSG_MNIST_data_cnn_papernot.txt','a')
+        print("Deviation {} took {:.3f}s".format(
+            DEV_MAG, time.time() - start_time))
+        plotfile.write('no_dr'+","+str(DEV_MAG)+","+
+                        str.format("{0:.3f}",adv_acc)+","+
+                        str.format("{0:.3f}",conf_wrong/adv_count)+","+
+                        str.format("{0:.3f}",conf_correct/c_count)+","+
+                        str(count_adv/50000*100)+","+
+                        str.format("{0:.3f}",conf_adv/count_adv)+","+
+                        str.format("{0:.3f}",conf_n_adv/(50000-count_adv))+","+
+                        str(count_abs_wrong/50000*100)+","+
+                        str.format("{0:.3f}",conf_abs/count_abs_wrong)+","+
+                        str.format("{0:.3f}",conf_abs_c/(ini_count-count_abs_wrong))+","+
+                        str(1)+"\n")
         plotfile.close()
-        #Loop for training data
-        start_time=time.time()
-        for DEV_MAG in np.linspace(0.01,0.1,10):
-            count_tot=0.0
-            count_wrong=0.0
-            conf_wrong=0.0
-            count_abs_wrong=0.0
-            conf_abs=0.0
-            count_adv=0.0
-            conf_adv=0.0
-            conf_correct=0.0
-            conf_n_adv=conf_abs_c=count_ini=0.0
-            b_count=0
-            for batch in iterate_minibatches(X_train_dr,y_train,5000,shuffle=False):
-                input_curr, y_curr=batch
-                current_predict=predict_fn(input_curr)
-                current_conf=confidence(input_curr)
-                cc,ca_c=val_fn(input_curr,y_curr)
-                count_ini=count_ini+ca_c
-                # Gradient w.r.t to input and current class
-                delta_x=grad_function(input_curr,y_curr)
-                # Sign of gradient
-                delta_x_sign=np.sign(delta_x)
-                #delta_x_sign=delta_x_sign/np.linalg.norm((delta_x_sign))
-                #Perturbed image
-                adv_x=input_curr+DEV_MAG*delta_x_sign
-                # Predicted class for perturbed image
-                cw,ca = val_fn(adv_x,y_curr)
-                count_wrong=count_wrong+ca
-                adv_predict=predict_fn(adv_x)
-                adv_conf=confidence(adv_x)
-                for i in range(5000):
-                    if adv_predict[i]!=y_curr[i]:
-                        conf_wrong=conf_wrong+adv_conf[i,adv_predict[i]]
-                    if adv_predict[i]!=current_predict[i]:
-                        count_adv=count_adv+1
-                        conf_adv=conf_adv+adv_conf[i,adv_predict[i]]
-                    if adv_predict[i]==y_curr[i]:
-                        conf_correct=conf_correct+adv_conf[i,adv_predict[i]]
-                    if adv_predict[i]==current_predict[i]:
-                        conf_n_adv=conf_n_adv+adv_conf[i,adv_predict[i]]
-                    if current_predict[i]==y_curr[i] and adv_predict[i]!=y_curr[i]:
-                        count_abs_wrong=count_abs_wrong+1
-                        conf_abs=conf_abs+adv_conf[i,adv_predict[i]]
-                    if current_predict[i]==y_curr[i] and adv_predict[i]==y_curr[i]:
-                        conf_abs_c=conf_abs_c+adv_conf[i,adv_predict[i]]
-                b_count=b_count+1
-                print b_count
-            plotfile=open(abs_path_o+'FSG_MNIST_NN_'+str(DEPTH)+'_'
-                            +str(WIDTH)+'_retrain_PCA_'+str(rd)+'.txt','a')
-            adv_acc=100-count_wrong/b_count*100
-            adv_acc_2=100-count_adv/b_count*100
-            adv_count=adv_acc*50000/100
-            c_count=50000-adv_count
-            ini_count=count_ini/b_count*50000
-            # plotfile=open(abs_path_o+'FSG_MNIST_data_cnn_papernot.txt','a')
-            print("Deviation {} took {:.3f}s".format(
-                DEV_MAG, time.time() - start_time))
-            plotfile.write('no_dr'+","+str(DEV_MAG)+","+
-                            str.format("{0:.3f}",adv_acc)+","+
-                            str.format("{0:.3f}",conf_wrong/adv_count)+","+
-                            str.format("{0:.3f}",conf_correct/c_count)+","+
-                            str(count_adv/50000*100)+","+
-                            str.format("{0:.3f}",conf_adv/count_adv)+","+
-                            str.format("{0:.3f}",conf_n_adv/(50000-count_adv))+","+
-                            str(count_abs_wrong/50000*100)+","+
-                            str.format("{0:.3f}",conf_abs/count_abs_wrong)+","+
-                            str.format("{0:.3f}",conf_abs_c/(ini_count-count_abs_wrong))+","+
-                            str(1)+"\n")
-            plotfile.close()
-        for DEV_MAG in np.linspace(0.01,0.1,10):
-            count_tot=0.0
-            count_wrong=0.0
-            conf_wrong=0.0
-            count_abs_wrong=0.0
-            conf_abs=0.0
-            count_adv=0.0
-            conf_adv=0.0
-            conf_correct=0.0
-            conf_n_adv=conf_abs_c=count_ini=0.0
-            b_count=0
-            for batch in iterate_minibatches(X_test_dr,y_test,1000,shuffle=False):
-                input_curr, y_curr=batch
-                current_predict=predict_fn(input_curr)
-                current_conf=confidence(input_curr)
-                # Gradient w.r.t to input and current class
-                delta_x=grad_function(input_curr,y_curr)
-                # Sign of gradient
-                delta_x_sign=np.sign(delta_x)
-                #delta_x_sign=delta_x_sign/np.linalg.norm((delta_x_sign))
-                #Perturbed image
-                adv_x=input_curr+DEV_MAG*delta_x_sign
-                # Predicted class for perturbed image
-                cw,ca = val_fn(adv_x,y_curr)
-                count_wrong=count_wrong+ca
-                adv_predict=predict_fn(adv_x)
-                adv_conf=confidence(adv_x)
-                for i in range(1000):
-                    if adv_predict[i]!=y_curr[i]:
-                        conf_wrong=conf_wrong+adv_conf[i,adv_predict[i]]
-                    if adv_predict[i]!=current_predict[i]:
-                        count_adv=count_adv+1
-                        conf_adv=conf_adv+adv_conf[i,adv_predict[i]]
-                    if adv_predict[i]==y_curr[i]:
-                        conf_correct=conf_correct+adv_conf[i,adv_predict[i]]
-                    if adv_predict[i]==current_predict[i]:
-                        conf_n_adv=conf_n_adv+adv_conf[i,adv_predict[i]]
-                    if current_predict[i]==y_curr[i] and adv_predict[i]!=y_curr[i]:
-                        count_abs_wrong=count_abs_wrong+1
-                        conf_abs=conf_abs+adv_conf[i,adv_predict[i]]
-                    if current_predict[i]==y_curr[i] and adv_predict[i]==y_curr[i]:
-                        conf_abs_c=conf_abs_c+adv_conf[i,adv_predict[i]]
-                b_count=b_count+1
-                print b_count
-            plotfile=open(abs_path_o+'FSG_MNIST_NN_'+str(DEPTH)+'_'
-                            +str(WIDTH)+'_retrain_PCA_'+str(rd)+'.txt','a')
-            adv_acc=100-count_wrong/b_count*100
-            adv_acc_2=100-count_adv/b_count*100
-            adv_count=adv_acc*10000/100
-            c_count=10000-adv_count
-            ini_count=test_acc/test_batches*10000
-            # plotfile=open(abs_path_o+'FSG_MNIST_data_cnn_papernot.txt','a')
-            print("Deviation {} took {:.3f}s".format(
-                DEV_MAG, time.time() - start_time))
-            plotfile.write('no_dr'+","+str(DEV_MAG)+","+
-                            str.format("{0:.3f}",adv_acc)+","+
-                            str.format("{0:.3f}",conf_wrong/adv_count)+","+
-                            str.format("{0:.3f}",conf_correct/c_count)+","+
-                            str(count_adv/10000*100)+","+
-                            str.format("{0:.3f}",conf_adv/count_adv)+","+
-                            str.format("{0:.3f}",conf_n_adv/(10000-count_adv))+","+
-                            str(count_abs_wrong/10000*100)+","+
-                            str.format("{0:.3f}",conf_abs/count_abs_wrong)+","+
-                            str.format("{0:.3f}",conf_abs_c/(ini_count-count_abs_wrong))+","+
-                            str(1)+"\n")
-            plotfile.close()
+        mag_count=mag_count+1
+    # Test data
+    mag_count=0
+    for DEV_MAG in np.linspace(0.01,0.1,10):
+        X_adv_dr=X_adv_dr_test[:,:,mag_count]
+        count_tot=0.0
+        count_wrong=0.0
+        conf_wrong=0.0
+        count_abs_wrong=0.0
+        conf_abs=0.0
+        count_adv=0.0
+        conf_adv=0.0
+        conf_correct=0.0
+        conf_n_adv=conf_abs_c=count_ini=0.0
+        b_count=0
+        for batch in iterate_minibatches(X_test_dr,y_test,1000,shuffle=False):
+            input_curr, y_curr=batch
+            current_predict=predict_fn(input_curr)
+            current_conf=confidence(input_curr)
+            # Gradient w.r.t to input and current class
+            delta_x=grad_function(input_curr,y_curr)
+            # Sign of gradient
+            delta_x_sign=np.sign(delta_x)
+            #delta_x_sign=delta_x_sign/np.linalg.norm((delta_x_sign))
+            #Perturbed image
+            adv_x=input_curr+DEV_MAG*delta_x_sign
+            # adv_x=X_adv_dr[b_count*1000:(b_count+1)*1000,:].reshape((1000,1,rd))
+            # Predicted class for perturbed image
+            cw,ca = val_fn(adv_x,y_curr)
+            count_wrong=count_wrong+ca
+            adv_predict=predict_fn(adv_x)
+            adv_conf=confidence(adv_x)
+            for i in range(1000):
+                if adv_predict[i]!=y_curr[i]:
+                    conf_wrong=conf_wrong+adv_conf[i,adv_predict[i]]
+                if adv_predict[i]!=current_predict[i]:
+                    count_adv=count_adv+1
+                    conf_adv=conf_adv+adv_conf[i,adv_predict[i]]
+                if adv_predict[i]==y_curr[i]:
+                    conf_correct=conf_correct+adv_conf[i,adv_predict[i]]
+                if adv_predict[i]==current_predict[i]:
+                    conf_n_adv=conf_n_adv+adv_conf[i,adv_predict[i]]
+                if current_predict[i]==y_curr[i] and adv_predict[i]!=y_curr[i]:
+                    count_abs_wrong=count_abs_wrong+1
+                    conf_abs=conf_abs+adv_conf[i,adv_predict[i]]
+                if current_predict[i]==y_curr[i] and adv_predict[i]==y_curr[i]:
+                    conf_abs_c=conf_abs_c+adv_conf[i,adv_predict[i]]
+            b_count=b_count+1
+            print b_count
+        plotfile=open(abs_path_o+'FSG_MNIST_NN_'+str(DEPTH)+'_'
+                        +str(WIDTH)+'_retrain_PCA_'+str(rd)+'.txt','a')
+        adv_acc=100-count_wrong/b_count*100
+        adv_acc_2=100-count_adv/b_count*100
+        adv_count=adv_acc*10000/100
+        c_count=10000-adv_count
+        ini_count=test_acc/test_batches*10000
+        # plotfile=open(abs_path_o+'FSG_MNIST_data_cnn_papernot.txt','a')
+        print("Deviation {} took {:.3f}s".format(
+            DEV_MAG, time.time() - start_time))
+        plotfile.write('no_dr'+","+str(DEV_MAG)+","+
+                        str.format("{0:.3f}",adv_acc)+","+
+                        str.format("{0:.3f}",conf_wrong/adv_count)+","+
+                        str.format("{0:.3f}",conf_correct/c_count)+","+
+                        str(count_adv/10000*100)+","+
+                        str.format("{0:.3f}",conf_adv/count_adv)+","+
+                        str.format("{0:.3f}",conf_n_adv/(10000-count_adv))+","+
+                        str(count_abs_wrong/10000*100)+","+
+                        str.format("{0:.3f}",conf_abs/count_abs_wrong)+","+
+                        str.format("{0:.3f}",conf_abs_c/(ini_count-count_abs_wrong))+","+
+                        str(1)+"\n")
+        plotfile.close()
+        mag_count=mag_count+1
+
+# print("Loading data...")
+# X_train, y_train, X_val, y_val, X_test, y_test = load_dataset()
+#
+# # Prepare Theano variables for inputs and targets
+# input_var = T.tensor4('inputs')
+# target_var = T.ivector('targets')
+#
+# # Create neural network model (depending on first command line parameter)
+# print("Building model and compiling functions...")
+#
+# NUM_EPOCHS=500
+#
+# #if hidden_layers==0:
+# DEPTH=2
+# WIDTH=100
+# # DROP_IN=0.2
+# # DROP_HID=0.5
+# # network = build_custom_mlp(input_var, int(DEPTH), int(WIDTH),
+# #                             float(DROP_IN), float(DROP_HID))
+# network=build_hidden_fc_no_rd(input_var, WIDTH=WIDTH)
+#     #lambda_network=1e-4
+#     # Create a loss expression for training, i.e., a scalar objective we want
+#     # to minimize (for our multi-class problem, it is the cross-entropy loss):
+#     # prediction = lasagne.layers.get_output(network)
+#     # loss = lasagne.objectives.categorical_crossentropy(prediction, target_var)
+#     #l2_penalty=lasagne.regularization.regularize_layer_params(
+#                                                     #network,l2)*lambda_network
+#     #loss=loss+l2_penalty/10
+#     # loss = loss.mean()
+#     #myfile=open('FSG_results.txt','a')
+#     #myfile.write('Model: FC10('+str(lambda_network)+')'+'\n')
+# # elif hidden_layers!=0:
+# #     WIDTH=100
+# #     network=build_hidden_fc(input_var,int(WIDTH))
+#     #, layer_1, layer_2
+#     # Create a loss expression for training, i.e., a scalar objective we want
+#     # to minimize (for our multi-class problem, it is the cross-entropy loss):
+#     # prediction = lasagne.layers.get_output(network)
+#     # loss = lasagne.objectives.categorical_crossentropy(prediction, target_var)
+#     #layers={layer_1:1e-7,layer_2:1e-7,network:1e-7}
+#     #l2_penalty=lasagne.regularization.regularize_layer_params_weighted(layers,
+#                                                                             #l2)
+#     #loss=loss
+#     #+l2_penalty
+#     # loss = loss.mean()
+#     # myfile=open('FSG_results.txt','a')
+#     # myfile.write('Model: FC10_'+str(hidden_layers)+'_'+str(WIDTH)+'\n')
+#
+# # network=build_cnn(input_var)
+#
+# prediction = lasagne.layers.get_output(network)
+# loss = lasagne.objectives.categorical_crossentropy(prediction, target_var)
+# loss=loss.mean()
+# # Create update expressions for training, i.e., how to modify the
+# # parameters at each training step. Here, we'll use Stochastic Gradient
+# # Descent (SGD) with Nesterov momentum, but Lasagne offers plenty more.
+# params = lasagne.layers.get_all_params(network, trainable=True)
+# updates = lasagne.updates.nesterov_momentum(
+#         loss, params, learning_rate=0.01, momentum=0.9)
+#
+# # Create a loss expression for validation/testing. The crucial difference
+# # here is that we do a deterministic forward pass through the network,
+# # disabling dropout layers.
+# test_prediction = lasagne.layers.get_output(network, deterministic=True)
+# test_loss = lasagne.objectives.categorical_crossentropy(test_prediction,
+#                                                         target_var)
+# test_loss = test_loss.mean()
+# # As a bonus, also create an expression for the classification accuracy:
+# test_acc = T.mean(T.eq(T.argmax(test_prediction, axis=1), target_var),
+#                   dtype=theano.config.floatX)
+#
+# # Compile a function performing a training step on a mini-batch (by giving
+# # the updates dictionary) and returning the corresponding training loss:
+# train_fn = theano.function([input_var, target_var], loss, updates=updates)
+#
+# eval_fn=theano.function([input_var,target_var],loss)
+#
+# # Compile a second function computing the validation loss and accuracy:
+# val_fn = theano.function([input_var, target_var], [test_loss, test_acc])
+#
+# predict_fn=theano.function([input_var],T.argmax(test_prediction, axis=1),allow_input_downcast=True)
+# confidence=theano.function([input_var],test_prediction,allow_input_downcast=True)
+# conf_calc=T.mean(T.max(test_prediction, axis=1),
+#                   dtype=theano.config.floatX)
+# confidence_2=theano.function([input_var],conf_calc)
+# correct_confidence=theano.function([input_var],T.max(test_prediction,axis=1))
+#
+# model_exist_flag=1
+# adv_example_flag=0
+#
+# script_dir=os.path.dirname(__file__)
+#
+# if model_exist_flag==1:
+#     rel_path_m="Models/"
+#     abs_path_m=os.path.join(script_dir,rel_path_m)
+#     # And load them again later on like this:
+#     with np.load(abs_path_m+'model_FC10_'+str(DEPTH)+'_'+str(WIDTH)+'_.npz') as f:
+#             param_values = [f['arr_%d' % i] for i in range(len(f.files))]
+#     # with np.load(abs_path_m+'model_cnn_9_layers_papernot.npz') as f:
+#     #     param_values = [f['arr_%d' % i] for i in range(len(f.files))]
+#     lasagne.layers.set_all_param_values(network, param_values)
+# # elif model_exist_flag==1 and hidden_layers!=0:
+# #     with np.load('model_FC10_'+str(hidden_layers)+'_'+str(WIDTH)+'.npz') as f:
+# #         param_values = [f['arr_%d' % i] for i in range(len(f.files))]
+# #     lasagne.layers.set_all_param_values(network, param_values)
+# elif model_exist_flag==0:
+#         # Finally, launch the training loop.
+#     print("Starting training...")
+#     # We iterate over epochs:
+#     for epoch in range(NUM_EPOCHS):
+#         # In each epoch, we do a full pass over the training data:
+#         train_err = 0
+#         train_batches = 0
+#         start_time = time.time()
+#         for batch in iterate_minibatches(X_train, y_train, 500, shuffle=True):
+#             inputs, targets = batch
+#             train_err += train_fn(inputs, targets)
+#             train_batches += 1
+#
+#         # And a full pass over the validation data:
+#         val_err = 0
+#         val_acc = 0
+#         val_batches = 0
+#         for batch in iterate_minibatches(X_val, y_val, 1, shuffle=False):
+#             inputs, targets = batch
+#             err, acc = val_fn(inputs, targets)
+#             val_err += err
+#             val_acc += acc
+#             val_batches += 1
+#         #print("{}".format(inputs))
+#         #print("{}".format(targets+1))
+#
+#         # Then we print the results for this epoch:
+#         print("Epoch {} of {} took {:.3f}s".format(
+#             epoch + 1, NUM_EPOCHS, time.time() - start_time))
+#         print("  training loss:\t\t{:.6f}".format(train_err / train_batches))
+#         print("  validation loss:\t\t{:.6f}".format(val_err / val_batches))
+#         print("  validation accuracy:\t\t{:.2f} %".format(
+#             val_acc / val_batches * 100))
+#
+#     rel_path_m="Models/"
+#     abs_path_m=os.path.join(script_dir,rel_path_m)
+#     # np.savez(abs_path_m+'model_cnn_9_layers_papernot.npz',
+#     #         *lasagne.layers.get_all_param_values(network))
+#     np.savez(abs_path_m+'model_FC10_'+str(DEPTH)+'_'+str(WIDTH)+'_.npz',
+#             *lasagne.layers.get_all_param_values(network))
+# # After training, we compute and print the test error:
+# test_err = 0
+# test_acc = 0
+# test_batches = 0
+# test_conf= 0
+# for batch in iterate_minibatches(X_test, y_test, 500, shuffle=False):
+#     inputs, targets = batch
+#     err, acc = val_fn(inputs, targets)
+#     test_err += err
+#     test_acc += acc
+#     test_batches += 1
+# for i in range(10000):
+#     x_curr=X_test[i].reshape((1,1,28,28))
+#     test_conf+=confidence(x_curr)[0][predict_fn(x_curr)[0]]
+#
+# print("Final results:")
+# print("  test loss:\t\t\t{:.6f}".format(test_err / test_batches))
+# print("  test accuracy:\t\t{:.2f} %".format(test_acc / test_batches * 100))
+# print("  test confidence:\t\t{:.2f} %".format(test_conf / 10000 * 100))
+#
+# avg_test_acc=test_acc/test_batches*100
+#
+# # Writing the test results out to a file
+# rel_path_o="Output_data/"
+# abs_path_o=os.path.join(script_dir,rel_path_o)
+# myfile=open(abs_path_o+'MNIST_test_perform.txt','a')
+# myfile.write('Model: FC10_'+str(DEPTH)+'_'+str(WIDTH)+
+#                 '_'+'\n')
+# # myfile.write('Model: model_cnn_9_layers_papernot'+'\n')
+# myfile.write("reduced_dim: "+"N.A."+"\n"+"Epochs: "
+#             +str(NUM_EPOCHS)+"\n"+"Test accuracy: "
+#             +str(avg_test_acc)+"\n")
+# myfile.write("#####################################################"+
+#                 "####"+"\n")
+# myfile.close()
+#
+# #Computing adversarial examples using fast sign gradient method
+# req_gradient=T.grad(loss,input_var)
+# grad_function=theano.function([input_var,target_var],req_gradient,allow_input_downcast=True)
+# #Computing and storing adv. examples
+# no_of_mags=10
+# train_size=50000
+# test_size=10000
+# adv_examples_train=np.zeros((train_size,784,no_of_mags))
+# adv_examples_test=np.zeros((test_size,784,no_of_mags))
+#
+# rel_path_o="Output_data/"
+# abs_path_o=os.path.join(script_dir,rel_path_o)
+# plotfile=open(abs_path_o+'FSG_MNIST_data_hidden_'+str(DEPTH)+'_'
+#                 +str(WIDTH)+'_.txt','a')
+# # plotfile=open(abs_path_o+'FSG_MNIST_data_cnn_papernot.txt','a')
+# plotfile.write('rd,Dev.,Wrong,C.,n_C.,Adv.,C.,n_C.,Pure,C.,n_C.,Train \n')
+# plotfile.close()
+# start_time=time.time()
+# mag_count=0
+# for DEV_MAG in np.linspace(0.01,0.1,10):
+#     count_tot=0.0
+#     count_wrong=0.0
+#     conf_wrong=0.0
+#     count_abs_wrong=0.0
+#     conf_abs=0.0
+#     count_adv=0.0
+#     conf_adv=0.0
+#     conf_correct=0.0
+#     conf_n_adv=conf_abs_c=count_ini=0.0
+#     b_count=0
+#     for batch in iterate_minibatches(X_train,y_train,5000,shuffle=False):
+#         input_curr, y_curr=batch
+#         current_predict=predict_fn(input_curr)
+#         current_conf=confidence(input_curr)
+#         cc,ca_c=val_fn(input_curr,y_curr)
+#         count_ini=count_ini+ca_c
+#         # Gradient w.r.t to input and current class
+#         delta_x=grad_function(input_curr,y_curr)
+#         # Sign of gradient
+#         delta_x_sign=np.sign(delta_x)
+#         #delta_x_sign=delta_x_sign/np.linalg.norm((delta_x_sign))
+#         #Perturbed image
+#         adv_x=input_curr+DEV_MAG*delta_x_sign
+#         # Predicted class for perturbed image
+#         cw,ca = val_fn(adv_x,y_curr)
+#         count_wrong=count_wrong+ca
+#         adv_predict=predict_fn(adv_x)
+#         adv_conf=confidence(adv_x)
+#         adv_x=adv_x.reshape((5000,784))
+#         adv_examples_train[b_count*5000:(b_count+1)*5000,:,mag_count]=adv_x
+#         for i in range(5000):
+#             if adv_predict[i]!=y_curr[i]:
+#                 conf_wrong=conf_wrong+adv_conf[i,adv_predict[i]]
+#             if adv_predict[i]!=current_predict[i]:
+#                 count_adv=count_adv+1
+#                 conf_adv=conf_adv+adv_conf[i,adv_predict[i]]
+#             if adv_predict[i]==y_curr[i]:
+#                 conf_correct=conf_correct+adv_conf[i,adv_predict[i]]
+#             if adv_predict[i]==current_predict[i]:
+#                 conf_n_adv=conf_n_adv+adv_conf[i,adv_predict[i]]
+#             if current_predict[i]==y_curr[i] and adv_predict[i]!=y_curr[i]:
+#                 count_abs_wrong=count_abs_wrong+1
+#                 conf_abs=conf_abs+adv_conf[i,adv_predict[i]]
+#             if current_predict[i]==y_curr[i] and adv_predict[i]==y_curr[i]:
+#                 conf_abs_c=conf_abs_c+adv_conf[i,adv_predict[i]]
+#         b_count=b_count+1
+#         print b_count
+#     plotfile=open(abs_path_o+'FSG_MNIST_data_hidden_'+str(DEPTH)+'_'
+#                     +str(WIDTH)+'_'+'.txt','a')
+#     adv_acc=100-count_wrong/b_count*100
+#     adv_acc_2=100-count_adv/b_count*100
+#     adv_count=adv_acc*50000/100
+#     c_count=50000-adv_count
+#     ini_count=count_ini/b_count*50000
+#     # plotfile=open(abs_path_o+'FSG_MNIST_data_cnn_papernot.txt','a')
+#     print("Deviation {} took {:.3f}s".format(
+#         DEV_MAG, time.time() - start_time))
+#     plotfile.write('no_dr'+","+str(DEV_MAG)+","+
+#                     str.format("{0:.3f}",adv_acc)+","+
+#                     str.format("{0:.3f}",conf_wrong/adv_count)+","+
+#                     str.format("{0:.3f}",conf_correct/c_count)+","+
+#                     str(count_adv/50000*100)+","+
+#                     str.format("{0:.3f}",conf_adv/count_adv)+","+
+#                     str.format("{0:.3f}",conf_n_adv/(50000-count_adv))+","+
+#                     str(count_abs_wrong/50000*100)+","+
+#                     str.format("{0:.3f}",conf_abs/count_abs_wrong)+","+
+#                     str.format("{0:.3f}",conf_abs_c/(ini_count-count_abs_wrong))+","+
+#                     str(1)+"\n")
+#     plotfile.close()
+#     mag_count=mag_count+1
+#
+# mag_count=0
+# for DEV_MAG in np.linspace(0.01,0.1,10):
+#     count_tot=0.0
+#     count_wrong=0.0
+#     conf_wrong=0.0
+#     count_abs_wrong=0.0
+#     conf_abs=0.0
+#     count_adv=0.0
+#     conf_adv=0.0
+#     conf_correct=0.0
+#     conf_n_adv=conf_abs_c=count_ini=0.0
+#     b_count=0
+#     for batch in iterate_minibatches(X_test,y_test,1000,shuffle=False):
+#         input_curr, y_curr=batch
+#         current_predict=predict_fn(input_curr)
+#         current_conf=confidence(input_curr)
+#         # Gradient w.r.t to input and current class
+#         delta_x=grad_function(input_curr,y_curr)
+#         # Sign of gradient
+#         delta_x_sign=np.sign(delta_x)
+#         #delta_x_sign=delta_x_sign/np.linalg.norm((delta_x_sign))
+#         #Perturbed image
+#         adv_x=input_curr+DEV_MAG*delta_x_sign
+#         # Predicted class for perturbed image
+#         cw,ca = val_fn(adv_x,y_curr)
+#         count_wrong=count_wrong+ca
+#         adv_predict=predict_fn(adv_x)
+#         adv_conf=confidence(adv_x)
+#         adv_x=adv_x.reshape((1000,784))
+#         adv_examples_train[b_count*1000:(b_count+1)*1000,:,mag_count]=adv_x
+#         for i in range(1000):
+#             if adv_predict[i]!=y_curr[i]:
+#                 conf_wrong=conf_wrong+adv_conf[i,adv_predict[i]]
+#             if adv_predict[i]!=current_predict[i]:
+#                 count_adv=count_adv+1
+#                 conf_adv=conf_adv+adv_conf[i,adv_predict[i]]
+#             if adv_predict[i]==y_curr[i]:
+#                 conf_correct=conf_correct+adv_conf[i,adv_predict[i]]
+#             if adv_predict[i]==current_predict[i]:
+#                 conf_n_adv=conf_n_adv+adv_conf[i,adv_predict[i]]
+#             if current_predict[i]==y_curr[i] and adv_predict[i]!=y_curr[i]:
+#                 count_abs_wrong=count_abs_wrong+1
+#                 conf_abs=conf_abs+adv_conf[i,adv_predict[i]]
+#             if current_predict[i]==y_curr[i] and adv_predict[i]==y_curr[i]:
+#                 conf_abs_c=conf_abs_c+adv_conf[i,adv_predict[i]]
+#         b_count=b_count+1
+#         print b_count
+#     plotfile=open(abs_path_o+'FSG_MNIST_data_hidden_'+str(DEPTH)+'_'
+#                     +str(WIDTH)+'_'+'.txt','a')
+#     adv_acc=100-count_wrong/b_count*100
+#     adv_acc_2=100-count_adv/b_count*100
+#     adv_count=adv_acc*10000/100
+#     c_count=10000-adv_count
+#     ini_count=test_acc/test_batches*10000
+#     # plotfile=open(abs_path_o+'FSG_MNIST_data_cnn_papernot.txt','a')
+#     print("Deviation {} took {:.3f}s".format(
+#         DEV_MAG, time.time() - start_time))
+#     plotfile.write('no_dr'+","+str(DEV_MAG)+","+
+#                     str.format("{0:.3f}",adv_acc)+","+
+#                     str.format("{0:.3f}",conf_wrong/adv_count)+","+
+#                     str.format("{0:.3f}",conf_correct/c_count)+","+
+#                     str(count_adv/10000*100)+","+
+#                     str.format("{0:.3f}",conf_adv/count_adv)+","+
+#                     str.format("{0:.3f}",conf_n_adv/(10000-count_adv))+","+
+#                     str(count_abs_wrong/10000*100)+","+
+#                     str.format("{0:.3f}",conf_abs/count_abs_wrong)+","+
+#                     str.format("{0:.3f}",conf_abs_c/(ini_count-count_abs_wrong))+","+
+#                     str(1)+"\n")
+#     plotfile.close()
+#     mag_count=mag_count+1
 
 DEPTH=2
 WIDTH=100
@@ -458,10 +852,11 @@ abs_path_o=os.path.join(script_dir,rel_path_o)
 rd_list=[784,331,100,50,40,30,20,10]
 num_epochs=500
 
-adv_example_flag=0
 for rd in rd_list:
     pca_main(rd)
-# plt.show()
+plt.show()
+
+
 #
 # pool=multiprocessing.Pool(processes=8)
 # pool.map(pca_main,rd_list)

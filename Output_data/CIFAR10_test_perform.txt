@@ -83,3 +83,84 @@ Model:CIFAR_model_FC10_3_100_drop (relu units) reduced_dim: N.A.
 Epochs: 500
 Test accuracy: 50.8499997854
 #########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 66.9399997592
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 66.9399997592
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot_no_reg
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 77.42000103
+#########################################################
+Model: model_cnn_9_layers_papernot
+reduced_dim: N.A.
+Epochs: 50
+Test accuracy: 65.6099998951
+#########################################################

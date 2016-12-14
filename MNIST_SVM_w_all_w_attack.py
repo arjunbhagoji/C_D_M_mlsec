@@ -95,48 +95,55 @@ def svm_no_pca():
     adv_examples_test=np.zeros((10000,784,no_of_mags))
 
     plotfile=open(abs_path_o+'Gradient_attack_SVM_no_PCA_'+'.txt','a')
-    plotfile.write('rd,Dev,Adv,Wrong,pure_adv,Train \n')
+    plotfile.write('rd,Dev,Wrong,Adv,pure_adv,Train \n')
     plotfile.close()
     mag_count=0
 
     for DEV_MAG in np.linspace(0.1,1.0,10):
         #print_flag=0
-        # count_pure_adv=0.0
-        # count_adv=0.0
-        # count_wrong=0.0
-        start_time=time.time()
-        # for i in range(50000):
-        #     x_ini=(X_train[i,:]).reshape((1,784))
-        #     ini_class=clf.predict(x_ini)
-        #     x_adv=(x_ini-DEV_MAG*(clf.coef_[ini_class[0],:]/
-        #         (np.linalg.norm(clf.coef_[ini_class[0],:])))).reshape((1,784))
-        #     adv_examples_train[i,:,mag_count]=x_adv
-        #     final_class=clf.predict(x_adv)
-        #     if ini_class[0]!=final_class[0]:
-        #         count_adv=count_adv+1
-        #     if y_train[i]!=final_class[0]:
-        #         count_wrong=count_wrong+1
-        #     if y_train[i]!=final_class[0] and ini_class[0]==y_train[i]:
-        #         count_pure_adv=count_pure_adv+1
-        #     # if y_train[i]!=final_class[0] and ini_class[0]==y_train[i] and print_flag==0:
-        #     #     #plt.imshow((x_ini.reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
-        #     #     plt.imshow(((x_adv-x_ini).reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
-        #     #     print_flag=print_flag+1
-        # plotfile=open(abs_path_o+'Gradient_attack_SVM_no_PCA_'+'.txt','a')
-        # print("Deviation {} took {:.3f}s".format(
-        #     DEV_MAG, time.time() - start_time))
-        # plotfile.write("no_dr"+","+str(DEV_MAG)+","+
-        #                 str(count_wrong/50000.0*100.0)+","+
-        #                 #str.format("{0:.3f}",conf_wrong/count_tot)+","+
-        #                 str(count_adv/50000.0*100.0)+","+
-        #                 #str.format("{0:.3f}",conf_adv/count_tot)+","+
-        #                 str(count_pure_adv/50000.0*100.0)+","+
-        #                 #str.format("{0:.3f}",conf_abs/count_tot)+","+
-        #                 str(1)+"\n")
-        # plotfile.close()
         count_pure_adv=0.0
         count_adv=0.0
         count_wrong=0.0
+        count_correct=0.0
+        start_time=time.time()
+        for i in range(50000):
+            x_ini=(X_train[i,:]).reshape((1,784))
+            ini_class=clf.predict(x_ini)
+            x_adv=(x_ini-DEV_MAG*(clf.coef_[ini_class[0],:]/
+                (np.linalg.norm(clf.coef_[ini_class[0],:])))).reshape((1,784))
+            adv_examples_train[i,:,mag_count]=x_adv
+            final_class=clf.predict(x_adv)
+            if ini_class[0]==y_train[i]:
+                count_correct=count_correct+1
+            if ini_class[0]!=final_class[0]:
+                count_adv=count_adv+1
+            if y_train[i]!=final_class[0]:
+                count_wrong=count_wrong+1
+            if y_train[i]!=final_class[0] and ini_class[0]==y_train[i]:
+                count_pure_adv=count_pure_adv+1
+            # if y_train[i]!=final_class[0] and ini_class[0]==y_train[i] and print_flag==0:
+            #     #plt.imshow((x_ini.reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
+            #     plt.imshow(((x_adv-x_ini).reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
+            #     print_flag=print_flag+1
+        plotfile=open(abs_path_o+'Gradient_attack_SVM_no_PCA_'+'.txt','a')
+        print("Deviation {} took {:.3f}s".format(
+            DEV_MAG, time.time() - start_time))
+        plotfile.write("no_dr"+","+str(DEV_MAG)+","+
+                        str(count_wrong/50000.0*100.0)+","+
+                        #str.format("{0:.3f}",conf_wrong/count_tot)+","+
+                        str(count_adv/50000.0*100.0)+","+
+                        #str.format("{0:.3f}",conf_adv/count_tot)+","+
+                        str(count_pure_adv/count_correct*100.0)+","+
+                        #str.format("{0:.3f}",conf_abs/count_tot)+","+
+                        str(1)+"\n")
+        plotfile.close()
+        mag_count=mag_count+1
+    mag_count=0
+    for DEV_MAG in np.linspace(0.1,1.0,10):
+        count_pure_adv=0.0
+        count_adv=0.0
+        count_wrong=0.0
+        count_correct=0.0
         for i in range(10000):
             x_ini=(X_test[i,:]).reshape((1,784))
             ini_class=clf.predict(x_ini)
@@ -144,6 +151,8 @@ def svm_no_pca():
                 (np.linalg.norm(clf.coef_[ini_class[0],:])))).reshape((1,784))
             adv_examples_test[i,:,mag_count]=x_adv
             final_class=clf.predict(x_adv)
+            if ini_class[0]==y_test[i]:
+                count_correct=count_correct+1
             if ini_class[0]!=final_class[0]:
                 count_adv=count_adv+1
             if y_test[i]!=final_class[0]:
@@ -154,6 +163,7 @@ def svm_no_pca():
             #     #plt.imshow((x_ini.reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
             #     plt.imshow(((x_adv-x_ini).reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
             #     print_flag=print_flag+1
+        print count_correct
         plotfile=open(abs_path_o+'Gradient_attack_SVM_no_PCA_'+'.txt','a')
         print("Deviation {} took {:.3f}s".format(
             DEV_MAG, time.time() - start_time))
@@ -162,7 +172,7 @@ def svm_no_pca():
                         #str.format("{0:.3f}",conf_wrong/count_tot)+","+
                         str(count_adv/10000.0*100.0)+","+
                         #str.format("{0:.3f}",conf_adv/count_tot)+","+
-                        str(count_pure_adv/10000.0*100.0)+","+
+                        str(count_pure_adv/count_correct*100.0)+","+
                         #str.format("{0:.3f}",conf_abs/count_tot)+","+
                         str(0)+"\n")
         plotfile.close()
@@ -187,6 +197,7 @@ def svm_pca(rd):
     X_test_dr=pca.transform(PCA_in_test).reshape((10000,rd))
     X_val_dr=pca.transform(PCA_in_val).reshape((10000,rd))
 
+    X_train_rev=pca.inverse_transform(X_train_dr)
     X_val_rev=pca.inverse_transform(X_val_dr)
     X_test_rev=pca.inverse_transform(X_test_dr)
     # clf_pca=svm.LinearSVC(dual=False)
@@ -197,20 +208,23 @@ def svm_pca(rd):
     #
     # test_out_pca=clf_pca.predict(X_test_dr)
     # test_success_pca=(10000-np.count_nonzero(test_out_pca-y_test))/10000.0
-    #
-    # resultfile=open(abs_path_o+'SVM_results.txt','a')
-    # resultfile.write(str(rd)+': '+str.format("{0:.3f}",validation_success_pca)
-    #                     +','+str.format("{0:.3f}",test_success_pca)+'\n')
 
-    val_out_pca=clf.predict(X_val_rev)
-    validation_success_pca=(10000-np.count_nonzero(val_out_pca-y_val))/10000.0
-
-    test_out_pca=clf.predict(X_test_rev)
-    test_success_pca=(10000-np.count_nonzero(test_out_pca-y_test))/10000.0
+    validation_success_pca=clf.score(X_val_rev,y_val)
+    test_success_pca=clf.score(X_test_rev,y_test)
 
     resultfile=open(abs_path_o+'SVM_results.txt','a')
-    resultfile.write(str(rd)+',clean: '+str.format("{0:.3f}",validation_success_pca)
+    resultfile.write(str(rd)+', recons: '+str.format("{0:.3f}",validation_success_pca)
                         +','+str.format("{0:.3f}",test_success_pca)+'\n')
+
+    # val_out_pca=clf_pca.predict(X_val_rev)
+    # validation_success_pca=(10000-np.count_nonzero(val_out_pca-y_val))/10000.0
+    #
+    # test_out_pca=clf_pca.predict(X_test_rev)
+    # test_success_pca=(10000-np.count_nonzero(test_out_pca-y_test))/10000.0
+    #
+    # resultfile=open(abs_path_o+'SVM_results.txt','a')
+    # resultfile.write(str(rd)+',clean: '+str.format("{0:.3f}",validation_success_pca)
+    #                     +','+str.format("{0:.3f}",test_success_pca)+'\n')
     # resultfile.write(str(rd)+': '+str.format("{0:.3f}",validation_success_pca)
     #                     +','+str.format("{0:.3f}",test_success_pca)+'\n')
 
@@ -219,68 +233,81 @@ def svm_pca(rd):
     #adv_examples=np.zeros((50000,784,no_of_mags_pca))
 
     #plotfile=open(abs_path_o+'Gradient_attack_SVM_PCA_'+str(rd)+'.txt','a')
-    plotfile=open(abs_path_o+'Gradient_attack_SVM_PCA_clean_'+str(rd)+'.txt','a')
-    plotfile.write('rd,Dev,Adv,Wrong,pure_adv,Train \n')
+    plotfile=open(abs_path_o+'Gradient_attack_SVM_PCA_retrain_unaware'+str(rd)+'.txt','a')
+    plotfile.write('rd,Dev,Wrong,Adv,pure_adv,Train \n')
     plotfile.close()
     mag_count=0
 
     for DEV_MAG in np.linspace(0.1,1.0,no_of_mags_pca):
-    #for mag_count in range(10):
-        # X_adv_dr=pca.transform(adv_examples_train[:,:,mag_count])
-        # rev_adv=pca.inverse_transform(X_adv_dr)
-        # count_pure_adv_pca=0.0
-        # count_adv_pca=0.0
-        # count_wrong_pca=0.0
-        # # start_time=time.time()
-        # for i in range(50000):
-        #     x_ini=(X_train[i,:]).reshape((1,784))
-        #     ini_class=clf.predict(x_ini)
-        #     #x_ini=(X_train_dr[i,:]).reshape((1,rd))
-        #     #ini_class=clf_pca.predict(x_ini)
-        #     #x_adv=(x_ini-DEV_MAG*(clf_pca.coef_[ini_class[0],:]/(np.linalg.norm(clf_pca.coef_[0,:])))).reshape((1,rd))
-        #     #x_adv=X_adv_dr[i,:].reshape((1,rd))
-        #     x_adv=rev_adv[i,:].reshape((1,784))
-        #     # final_class=clf_pca.predict(x_adv)
-        #     final_class=clf.predict(x_adv)
-        #     if ini_class[0]!=final_class[0]:
-        #         count_adv_pca=count_adv_pca+1
-        #     if y_train[i]!=final_class[0]:
-        #         count_wrong_pca=count_wrong_pca+1
-        #     if y_train[i]!=final_class[0] and ini_class[0]==y_train[i]:
-        #         count_pure_adv_pca=count_pure_adv_pca+1
-        #     #if y_train[i]!=final_class[0] and ini_class[0]==y_train[i] and print_flag==0:
-        #         #plt.imshow((x_ini.reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
-        #         #plt.imshow(((x_adv-x_ini).reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
-        #         #print_flag=print_flag+1
-        # #plotfile=open(abs_path_o+'Gradient_attack_SVM_PCA_'+str(rd)+'.txt','a')
-        # plotfile=open(abs_path_o+'Gradient_attack_SVM_PCA_clean_'+str(rd)+'.txt','a')
-        # # print("Deviation {} took {:.3f}s".format(
-        # #     DEV_MAG, time.time() - start_time))
-        # plotfile.write(str(rd)+","+str(DEV_MAG)+","+
-        #                 str(count_wrong_pca/50000.0*100.0)+","+
-        #                 #str.format("{0:.3f}",conf_wrong/count_tot)+","+
-        #                 str(count_adv_pca/50000.0*100.0)+","+
-        #                 #str.format("{0:.3f}",conf_adv/count_tot)+","+
-        #                 str(count_pure_adv_pca/50000.0*100.0)+","+
-        #                 #str.format("{0:.3f}",conf_abs/count_tot)+","+
-        #                 str(1)+"\n")
-        # plotfile.close()
+        X_adv_dr=pca.transform(adv_examples_train[:,:,mag_count])
+        rev_adv=pca.inverse_transform(X_adv_dr)
+        count_pure_adv_pca=0.0
+        count_adv_pca=0.0
+        count_wrong_pca=0.0
+        count_correct_pca=0.0
+        rd_perturb=0.0
+        # start_time=time.time()
+        for i in range(50000):
+            x_ini=(X_train_rev[i,:]).reshape((1,784))
+            ini_class=clf.predict(x_ini)
+            x_adv=rev_adv[i,:].reshape((1,784))
+            final_class=clf.predict(x_adv)
+            # x_ini=(X_train_dr[i,:]).reshape((1,rd))
+            # ini_class=clf_pca.predict(x_ini)
+            # # x_adv=(x_ini-DEV_MAG*(clf_pca.coef_[ini_class[0],:]/(np.linalg.norm(clf_pca.coef_[ini_class[0],:])))).reshape((1,rd))
+            # x_adv=X_adv_dr[i,:].reshape((1,rd))
+            # final_class=clf_pca.predict(x_adv)
+            rd_perturb=rd_perturb+np.linalg.norm(x_adv-x_ini)
+            if ini_class[0]==y_train[i]:
+                count_correct_pca=count_correct_pca+1
+            if ini_class[0]!=final_class[0]:
+                count_adv_pca=count_adv_pca+1
+            if y_train[i]!=final_class[0]:
+                count_wrong_pca=count_wrong_pca+1
+            if y_train[i]!=final_class[0] and ini_class[0]==y_train[i]:
+                count_pure_adv_pca=count_pure_adv_pca+1
+            #if y_train[i]!=final_class[0] and ini_class[0]==y_train[i] and print_flag==0:
+                #plt.imshow((x_ini.reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
+                #plt.imshow(((x_adv-x_ini).reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
+                #print_flag=print_flag+1
+        #plotfile=open(abs_path_o+'Gradient_attack_SVM_PCA_'+str(rd)+'.txt','a')
+        plotfile=open(abs_path_o+'Gradient_attack_SVM_PCA_recons'+str(rd)+'.txt','a')
+        # print("Deviation {} took {:.3f}s".format(
+        #     DEV_MAG, time.time() - start_time))
+        plotfile.write(str(rd)+","+str(DEV_MAG)+","+
+                        str(count_wrong_pca/50000.0*100.0)+","+
+                        #str.format("{0:.3f}",conf_wrong/count_tot)+","+
+                        str(count_adv_pca/50000.0*100.0)+","+
+                        #str.format("{0:.3f}",conf_adv/count_tot)+","+
+                        str.format("{0:.3f}",count_pure_adv_pca/count_correct_pca*100.0)+","+
+                        #str.format("{0:.3f}",conf_abs/count_tot)+","+
+                        str.format("{0:.3f}",rd_perturb/50000.0)+","+
+                        str(1)+"\n")
+        plotfile.close()
+        mag_count=mag_count+1
+    mag_count=0
+    for DEV_MAG in np.linspace(0.1,1.0,no_of_mags_pca):
         X_adv_dr=pca.transform(adv_examples_test[:,:,mag_count])
         rev_adv=pca.inverse_transform(X_adv_dr)
         count_pure_adv_pca=0.0
         count_adv_pca=0.0
         count_wrong_pca=0.0
+        count_correct_pca=0.0
+        rd_perturb=0.0
         # start_time=time.time()
         for i in range(10000):
-            x_ini=(X_test[i,:]).reshape((1,784))
+            x_ini=(X_test_rev[i,:]).reshape((1,784))
             ini_class=clf.predict(x_ini)
-            #x_ini=(X_train_dr[i,:]).reshape((1,rd))
-            #ini_class=clf_pca.predict(x_ini)
-            #x_adv=(x_ini-DEV_MAG*(clf_pca.coef_[ini_class[0],:]/(np.linalg.norm(clf_pca.coef_[0,:])))).reshape((1,rd))
-            #x_adv=X_adv_dr[i,:].reshape((1,rd))
             x_adv=rev_adv[i,:].reshape((1,784))
-            # final_class=clf_pca.predict(x_adv)
             final_class=clf.predict(x_adv)
+            # x_ini=(X_test_dr[i,:]).reshape((1,rd))
+            # ini_class=clf_pca.predict(x_ini)
+            # # x_adv=(x_ini-DEV_MAG*(clf_pca.coef_[ini_class[0],:]/(np.linalg.norm(clf_pca.coef_[ini_class[0],:])))).reshape((1,rd))
+            # x_adv=X_adv_dr[i,:].reshape((1,rd))
+            # final_class=clf_pca.predict(x_adv)
+            rd_perturb=rd_perturb+np.linalg.norm(x_adv-x_ini)
+            if ini_class[0]==y_test[i]:
+                count_correct_pca=count_correct_pca+1
             if ini_class[0]!=final_class[0]:
                 count_adv_pca=count_adv_pca+1
             if y_test[i]!=final_class[0]:
@@ -292,7 +319,7 @@ def svm_pca(rd):
                 #plt.imshow(((x_adv-x_ini).reshape((28,28)))*255, cmap='gray', interpolation='nearest', vmin=0, vmax=255)
                 #print_flag=print_flag+1
         #plotfile=open(abs_path_o+'Gradient_attack_SVM_PCA_'+str(rd)+'.txt','a')
-        plotfile=open(abs_path_o+'Gradient_attack_SVM_PCA_clean_'+str(rd)+'.txt','a')
+        plotfile=open(abs_path_o+'Gradient_attack_SVM_PCA_recons'+str(rd)+'.txt','a')
         # print("Deviation {} took {:.3f}s".format(
         #     DEV_MAG, time.time() - start_time))
         plotfile.write(str(rd)+","+str(DEV_MAG)+","+
@@ -300,8 +327,9 @@ def svm_pca(rd):
                         #str.format("{0:.3f}",conf_wrong/count_tot)+","+
                         str(count_adv_pca/10000.0*100.0)+","+
                         #str.format("{0:.3f}",conf_adv/count_tot)+","+
-                        str(count_pure_adv_pca/10000.0*100.0)+","+
+                        str.format("{0:.3f}",count_pure_adv_pca/count_correct_pca*100.0)+","+
                         #str.format("{0:.3f}",conf_abs/count_tot)+","+
+                        str.format("{0:.3f}",rd_perturb/10000.0)+","+
                         str(0)+"\n")
         plotfile.close()
         mag_count=mag_count+1
@@ -317,8 +345,8 @@ METHOD='ovr'
 adv_examples_train, adv_examples_test, clf=svm_no_pca()
 
 rd_list=[784,331,100,50,40,30,20,10]
-#rd_list=[784]
-#svm_pca(784)
+#d_list=[784]
+# svm_pca(784)
 
 
 pool=multiprocessing.Pool(processes=8)

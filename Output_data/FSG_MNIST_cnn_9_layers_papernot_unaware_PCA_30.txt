@@ -1,5 +1,4 @@
-rd,Dev.,Wrong,Conf.,Adv.,Conf.,Either,Conf.,Train 
-rd,Dev.,Wrong,Conf.,Adv.,Conf.,Either,Conf.,Train 
+rd,Dev.,Wrong,Conf.,Adv.,Conf.,Either,Conf.,Train
 30,0.05,4.032,0.033,3.93,0.033,4.418,0.037,0
 30,0.1,13.078,0.115,12.962,0.114,13.482,0.119,0
 30,0.15,25.132,0.227,24.996,0.226,25.486,0.231,0
